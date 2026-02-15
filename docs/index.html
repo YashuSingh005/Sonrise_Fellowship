@@ -30,42 +30,37 @@
 
   <!-- HERO SECTION -->
   <section class="hero" id="home">
+    <div class="slider-background">
+      <div class="slide-bg active" style="background: linear-gradient(135deg, #8b0000 0%, #b71c1c 50%, #d32f2f 100%);"></div>
+      <div class="slide-bg" style="background: linear-gradient(135deg, #1a237e 0%, #283593 50%, #3949ab 100%);"></div>
+      <div class="slide-bg" style="background: linear-gradient(135deg, #004d40 0%, #00695c 50%, #00796b 100%);"></div>
+      <div class="slide-bg" style="background: linear-gradient(135deg, #4a148c 0%, #6a1b9a 50%, #7b1fa2 100%);"></div>
+    </div>
     <div class="hero-content animate-on-scroll">
-      <h1>Serving Humanity with Faith & Love</h1>
+      <div class="text-slider-container">
+        <h1 class="text-slide active">Serving Humanity with Faith & Love</h1>
+        <h1 class="text-slide">Bringing Hope to the Hopeless</h1>
+        <h1 class="text-slide">Spreading Compassion Through Action</h1>
+        <h1 class="text-slide">Building Communities with Care</h1>
+      </div>
       <p class="hero-subtext">Sonrise Ministry is dedicated to spreading hope through service, compassion, and faith.</p>
       <a href="#about" class="btn btn-hero">Learn More</a>
     </div>
   </section>
+  <!-- Add after navbar or before footer -->
+<div class="verse-ticker">
+  <div class="ticker-content">
+    <span class="verse">"For I was hungry and you gave me food..." - Matthew 25:35</span>
+    <span class="verse">"Let all that you do be done in love." - 1 Corinthians 16:14</span>
+    <span class="verse">"Faith by itself, if it is not accompanied by action, is dead." - James 2:17</span>
+  </div>
+</div>
 
-  <!-- SLIDER SECTION -->
-  <section class="slider-section" aria-label="Photo gallery">
-    <div class="slider-wrapper">
-      <button type="button" class="slider-btn slider-prev" aria-label="Previous slide">‹</button>
-      <button type="button" class="slider-btn slider-next" aria-label="Next slide">›</button>
-      <div class="slider-track" id="sliderTrack">
-        <div class="slide">
-          <!-- Replace with your image: <img src="images/slide1.jpg" alt="Description"> or set background-image on .slide-photo -->
-          <div class="slide-photo" style="background-image: url('');">
-            <span class="slide-placeholder-text">Add your photo here</span>
-          </div>
-        </div>
-        <div class="slide">
-          <div class="slide-photo" style="background-image: url('');">
-            <span class="slide-placeholder-text">Add your photo here</span>
-          </div>
-        </div>
-        <div class="slide">
-          <div class="slide-photo" style="background-image: url('');">
-            <span class="slide-placeholder-text">Add your photo here</span>
-          </div>
-        </div>
-      </div>
-      <div class="slider-dots" id="sliderDots"></div>
-    </div>
-  </section>
-
-  <!-- ABOUT SECTION -->
+  <!-- ABOUT SECTION WITH PARALLAX EFFECT -->
   <section class="about" id="about">
+    <div class="parallax-bubble bubble-1"></div>
+    <div class="parallax-bubble bubble-2"></div>
+    <div class="parallax-bubble bubble-3"></div>
     <div class="container">
       <h2 class="section-title animate-on-scroll">About Sonrise Ministry</h2>
       <div class="about-content animate-on-scroll">
@@ -74,8 +69,11 @@
     </div>
   </section>
 
-  <!-- SOCIAL WORK SECTION -->
+  <!-- SOCIAL WORK SECTION WITH PARALLAX EFFECT -->
   <section class="social-work" id="social-work">
+    <div class="parallax-line line-1"></div>
+    <div class="parallax-line line-2"></div>
+    <div class="parallax-line line-3"></div>
     <div class="container">
       <h2 class="section-title animate-on-scroll">Our Social Work</h2>
       <div class="cards">
@@ -144,6 +142,6 @@
     (function(){
     emailjs.init("q-5DeiVSIk8f0Odxl");
     })();
-    </script>
+  </script>
 </body>
 </html>

@@ -57,7 +57,7 @@
           contactForm.reset();
         }, function (error) {
           console.error('EmailJS error:', error);
-          alert('Failed to send message.');
+          alert('Failed to send message. Please try again later.');
         });
     });
   }
@@ -83,48 +83,107 @@
   window.addEventListener('scroll', checkScrollAnimations);
   window.addEventListener('load', checkScrollAnimations);
 
-  // ========== Slider ==========
-  const sliderTrack = document.getElementById('sliderTrack');
-  const sliderDotsEl = document.getElementById('sliderDots');
-  const prevBtn = document.querySelector('.slider-prev');
-  const nextBtn = document.querySelector('.slider-next');
-  const slides = document.querySelectorAll('.slide');
-
-  if (sliderTrack && slides.length) {
-    let currentIndex = 0;
-    const totalSlides = slides.length;
-
-    function goToSlide(index) {
-      currentIndex = (index + totalSlides) % totalSlides;
-      sliderTrack.style.transform = 'translateX(-' + currentIndex * 100 + '%)';
-      sliderDotsEl.querySelectorAll('.slider-dot').forEach(function (dot, i) {
-        dot.classList.toggle('active', i === currentIndex);
-      });
+  // ========== Background and Text Slider ==========
+  const slideBackgrounds = document.querySelectorAll('.slide-bg');
+  const textSlides = document.querySelectorAll('.text-slide');
+  
+  if (slideBackgrounds.length && textSlides.length) {
+    let currentSlide = 0;
+    const totalSlides = slideBackgrounds.length;
+    
+    function changeSlide() {
+      // Remove active class from current slide
+      slideBackgrounds[currentSlide].classList.remove('active');
+      textSlides[currentSlide].classList.remove('active');
+      
+      // Move to next slide
+      currentSlide = (currentSlide + 1) % totalSlides;
+      
+      // Add active class to new slide
+      slideBackgrounds[currentSlide].classList.add('active');
+      textSlides[currentSlide].classList.add('active');
+      
+      // Optional: Log slide change for debugging
+      console.log('Slide changed to:', currentSlide + 1);
     }
-
-    slides.forEach(function (_, i) {
-      const dot = document.createElement('button');
-      dot.type = 'button';
-      dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
-      dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
-      dot.addEventListener('click', function () { goToSlide(i); });
-      sliderDotsEl.appendChild(dot);
-    });
-
-    if (prevBtn) prevBtn.addEventListener('click', function () { goToSlide(currentIndex - 1); });
-    if (nextBtn) nextBtn.addEventListener('click', function () { goToSlide(currentIndex + 1); });
-
-    let touchStartX = 0;
-    let touchEndX = 0;
-    sliderTrack.addEventListener('touchstart', function (e) {
-      touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
-    sliderTrack.addEventListener('touchend', function (e) {
-      touchEndX = e.changedTouches[0].screenX;
-      var diff = touchStartX - touchEndX;
-      if (Math.abs(diff) > 50) {
-        goToSlide(diff > 0 ? currentIndex + 1 : currentIndex - 1);
-      }
-    }, { passive: true });
+    
+    // Change slide every 10 seconds (10000 milliseconds)
+    setInterval(changeSlide, 10000);
+    
+    // Add a small delay before starting the slider to ensure everything loads
+    setTimeout(() => {
+      console.log('Slider initialized - will change every 10 seconds');
+    }, 1000);
   }
+
+  // ========== Smooth Scroll for Anchor Links ==========
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+
+  // ========== Parallax Effect on Mouse Move ==========
+  const aboutSection = document.querySelector('.about');
+  const socialWorkSection = document.querySelector('.social-work');
+  
+  if (aboutSection) {
+    const bubbles = aboutSection.querySelectorAll('.parallax-bubble');
+    
+    aboutSection.addEventListener('mousemove', function(e) {
+      const mouseX = e.clientX / window.innerWidth;
+      const mouseY = e.clientY / window.innerHeight;
+      
+      bubbles.forEach((bubble, index) => {
+        const speed = 20 + (index * 10);
+        const x = (mouseX * speed);
+        const y = (mouseY * speed);
+        bubble.style.transform = `translate(${x}px, ${y}px)`;
+      });
+    });
+    
+    aboutSection.addEventListener('mouseleave', function() {
+      bubbles.forEach((bubble, index) => {
+        bubble.style.transform = 'translate(0, 0)';
+      });
+    });
+  }
+  
+  if (socialWorkSection) {
+    const lines = socialWorkSection.querySelectorAll('.parallax-line');
+    
+    socialWorkSection.addEventListener('mousemove', function(e) {
+      const mouseX = e.clientX / window.innerWidth;
+      
+      lines.forEach((line, index) => {
+        const speed = 30 + (index * 15);
+        const x = (mouseX * speed);
+        line.style.transform = `translateX(${x}px) rotate(${index % 2 === 0 ? -2 : 3}deg)`;
+      });
+    });
+    
+    socialWorkSection.addEventListener('mouseleave', function() {
+      lines.forEach((line, index) => {
+        line.style.transform = `rotate(${index === 0 ? -2 : index === 1 ? 3 : -1}deg)`;
+      });
+    });
+  }
+
+  // ========== Preloader (optional) ==========
+  window.addEventListener('load', function() {
+    document.body.classList.add('loaded');
+    
+    // Add page transition class to main sections
+    document.querySelectorAll('section').forEach(section => {
+      section.classList.add('page-transition');
+    });
+  });
+
 })();
