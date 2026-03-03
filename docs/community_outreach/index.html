@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Community Outreach | Sonrise Ministry</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ============================================
+       COMPLETE COMMUNITY OUTREACH PAGE STYLES
+       All styles in one file - No external dependencies
+       ============================================ */
+    
+    /* CSS Variables - matching main theme */
+    :root {
+      --red-primary: #b71c1c;
+      --red-dark: #8b0000;
+      --red-light: #d32f2f;
+      --white: #ffffff;
+      --off-white: #fafafa;
+      --gray-light: #f5f5f5;
+      --gray-text: #555;
+      --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      --shadow-hover: 0 8px 30px rgba(183, 28, 28, 0.15);
+      --transition: 0.3s ease;
+    }
+
+    /* Reset & Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      color: #333;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ========== NAVBAR ========== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: var(--white);
+      box-shadow: var(--shadow);
+      z-index: 1000;
+      transition: background var(--transition), box-shadow var(--transition);
+    }
+
+    .navbar.scrolled {
+      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--red-primary);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .logo:hover {
+      color: var(--red-dark);
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-menu a {
+      color: #333;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      position: relative;
+      transition: color var(--transition);
+    }
+
+    .nav-menu a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--red-primary);
+      transition: width var(--transition);
+    }
+
+    .nav-menu a:hover,
+    .nav-menu a:focus {
+      color: var(--red-primary);
+    }
+
+    .nav-menu a:hover::after {
+      width: 100%;
+    }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    .nav-toggle span {
+      width: 24px;
+      height: 2px;
+      background: var(--red-primary);
+      transition: var(--transition);
+    }
+
+    .nav-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .nav-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* ========== PAGE HEADER with Dynamic Background ========== */
+    .page-header {
+      margin-top: 72px;
+      padding: 6rem 0 4rem;
+      color: white;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: background 1.5s ease-in-out;
+    }
+
+    /* Background colors for each slide - Green/Purple themed */
+    .page-header.bg-1 {
+      background: linear-gradient(135deg, #004d40 0%, #00695c 50%, #00796b 100%);
+    }
+
+    .page-header.bg-2 {
+      background: linear-gradient(135deg, #1a237e 0%, #283593 50%, #3949ab 100%);
+    }
+
+    .page-header.bg-3 {
+      background: linear-gradient(135deg, #b71c1c 0%, #c62828 50%, #d32f2f 100%);
+    }
+
+    .page-header.bg-4 {
+      background: linear-gradient(135deg, #4a148c 0%, #6a1b9a 50%, #7b1fa2 100%);
+    }
+
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.3;
+      z-index: 1;
+    }
+
+    .page-header .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ========== TEXT SLIDER STYLES ========== */
+    .text-slider-container {
+      position: relative;
+      height: auto;
+      min-height: 120px;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+    }
+
+    .text-slide {
+      position: absolute;
+      width: 100%;
+      left: 0;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.2;
+      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      pointer-events: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .text-slide.active {
+      opacity: 1;
+      transform: translateY(0);
+      position: relative;
+    }
+
+    @keyframes textGlow {
+      0% { text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2); }
+      50% { text-shadow: 0 2px 30px rgba(255, 255, 255, 0.5); }
+      100% { text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2); }
+    }
+
+    .text-slide.active {
+      animation: textGlow 2s ease;
+    }
+
+    .page-subtitle {
+      font-size: 1.25rem;
+      opacity: 0.95;
+      max-width: 700px;
+      margin: 1.5rem auto 0;
+      position: relative;
+      z-index: 2;
+      font-weight: 300;
+    }
+
+    /* ========== VERSE TICKER ========== */
+    .verse-ticker {
+      background: var(--red-dark);
+      color: var(--white);
+      padding: 0.5rem 0;
+      overflow: hidden;
+      position: relative;
+      border-bottom: 2px solid rgba(255,255,255,0.2);
+    }
+
+    .ticker-content {
+      display: flex;
+      animation: ticker 25s linear infinite;
+      white-space: nowrap;
+    }
+
+    .ticker-content:hover {
+      animation-play-state: paused;
+    }
+
+    .verse {
+      padding: 0 2rem;
+      font-style: italic;
+      font-size: 0.95rem;
+      letter-spacing: 0.5px;
+    }
+
+    @keyframes ticker {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* ========== CONTENT BLOCKS ========== */
+    .content-block {
+      padding: 5rem 0;
+      background: var(--white);
+    }
+
+    .content-block-alt {
+      background: var(--gray-light);
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .content-grid.reverse {
+      direction: rtl;
+    }
+
+    .content-grid.reverse .content-text {
+      direction: ltr;
+    }
+
+    /* Image Placeholders */
+    .image-placeholder {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .image-placeholder::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+      100% { left: 100%; }
+    }
+
+    .placeholder-text {
+      color: #999;
+      font-size: 1.1rem;
+      font-weight: 500;
+      z-index: 2;
+    }
+
+    .content-text {
+      padding: 1rem;
+    }
+
+    .content-title {
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      color: var(--red-primary);
+      margin-bottom: 1.5rem;
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+    }
+
+    .content-paragraph {
+      font-size: 1.1rem;
+      color: var(--gray-text);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ========== GALLERY SECTION ========== */
+    .gallery-section {
+      padding: 5rem 0;
+      background: var(--white);
+    }
+
+    .section-title {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      color: var(--red-primary);
+      text-align: center;
+      margin-bottom: 2.5rem;
+      font-weight: 600;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .gallery-item {
+      width: 100%;
+    }
+
+    .gallery-placeholder {
+      width: 100%;
+      aspect-ratio: 1/1;
+      background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .gallery-placeholder:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .gallery-placeholder::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      animation: shimmer 2s infinite;
+    }
+
+    .gallery-placeholder .placeholder-text {
+      font-size: 0.9rem;
+    }
+
+    /* ========== BACK TO HOME BUTTON ========== */
+    .back-to-home {
+      padding: 2rem 0 4rem;
+      text-align: center;
+      background: var(--white);
+    }
+
+    .btn-back {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      background: transparent;
+      color: var(--red-primary);
+      text-decoration: none;
+      font-weight: 600;
+      border: 2px solid var(--red-primary);
+      border-radius: 4px;
+      transition: background var(--transition), color var(--transition);
+      font-family: 'Source Sans 3', sans-serif;
+    }
+
+    .btn-back:hover {
+      background: var(--red-primary);
+      color: var(--white);
+    }
+
+    /* ========== FOOTER ========== */
+    .footer {
+      background: var(--red-dark);
+      color: var(--white);
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .footer-text {
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      opacity: 0.95;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.15);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 50%;
+      font-size: 1.1rem;
+      transition: background var(--transition), transform var(--transition);
+    }
+
+    .social-link:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.1);
+    }
+
+    /* ========== SCROLL ANIMATIONS ========== */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .animate-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 768px) {
+      .nav-toggle {
+        display: flex;
+      }
+
+      .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: var(--white);
+        flex-direction: column;
+        padding: 5rem 2rem 2rem;
+        box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+        transition: right var(--transition);
+        gap: 1.5rem;
+      }
+
+      .nav-menu.active {
+        right: 0;
+      }
+
+      .nav-menu a::after {
+        display: none;
+      }
+
+      .page-header {
+        padding: 5rem 0 3rem;
+      }
+      
+      .text-slider-container {
+        min-height: 100px;
+      }
+      
+      .text-slide {
+        font-size: clamp(1.75rem, 4vw, 2.5rem);
+      }
+
+      .content-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      
+      .content-grid.reverse {
+        direction: ltr;
+      }
+      
+      .content-grid.reverse .content-image {
+        order: -1;
+      }
+      
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo {
+        font-size: 1.25rem;
+      }
+
+      .page-header {
+        padding: 4rem 0 2.5rem;
+      }
+      
+      .text-slider-container {
+        min-height: 90px;
+      }
+      
+      .text-slide {
+        font-size: clamp(1.5rem, 3.5vw, 2rem);
+      }
+      
+      .page-subtitle {
+        font-size: 1rem;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .content-title {
+        font-size: 1.75rem;
+      }
+      
+      .content-paragraph {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">Sonrise Ministry</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="nav-menu" id="navMenu">
+        <a href="index.html#home">Home</a>
+        <a href="index.html#about">About Us</a>
+        <a href="index.html#social-work">Our Social Work</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PAGE HEADER with Color Changing Background -->
+  <section class="page-header" id="dynamicHeader">
+    <div class="container">
+      <!-- Text Slider Container -->
+      <div class="text-slider-container">
+        <h1 class="text-slide active">Community Outreach</h1>
+        <h1 class="text-slide">Supporting Families in Need</h1>
+        <h1 class="text-slide">Building Strong Communities</h1>
+        <h1 class="text-slide">Spreading Love Through Action</h1>
+      </div>
+      <p class="page-subtitle">Supporting families through care, prayer programs, and community building</p>
+    </div>
+  </section>
+
+  <!-- VERSE TICKER -->
+  <div class="verse-ticker">
+    <div class="ticker-content">
+      <span class="verse">"For I was hungry and you gave me food..." - Matthew 25:35</span>
+      <span class="verse">"Let all that you do be done in love." - 1 Corinthians 16:14</span>
+      <span class="verse">"Faith by itself, if it is not accompanied by action, is dead." - James 2:17</span>
+    </div>
+  </div>
+
+  <!-- SECTION 1: Image Left, Text Right -->
+  <section class="content-block">
+    <div class="container">
+      <div class="content-grid">
+        <!-- Left: Image Placeholder -->
+        <div class="animate-on-scroll">
+          <div class="image-placeholder">
+            <span class="placeholder-text">[Community Outreach Photo 1]</span>
+          </div>
+        </div>
+        <!-- Right: Text -->
+        <div class="content-text animate-on-scroll">
+          <h2 class="content-title">Building Strong Communities</h2>
+          <p class="content-paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          <p class="content-paragraph">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: Text Left, Image Right -->
+  <section class="content-block content-block-alt">
+    <div class="container">
+      <div class="content-grid reverse">
+        <!-- Left: Text -->
+        <div class="content-text animate-on-scroll">
+          <h2 class="content-title">Family Support & Prayer Programs</h2>
+          <p class="content-paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          <p class="content-paragraph">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+        <!-- Right: Image Placeholder -->
+        <div class="animate-on-scroll">
+          <div class="image-placeholder">
+            <span class="placeholder-text">[Community Outreach Photo 2]</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY SECTION -->
+  <section class="gallery-section">
+    <div class="container">
+      <h2 class="section-title animate-on-scroll">Community in Action</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item animate-on-scroll">
+          <div class="gallery-placeholder">
+            <span class="placeholder-text">[Photo 1]</span>
+          </div>
+        </div>
+        <div class="gallery-item animate-on-scroll">
+          <div class="gallery-placeholder">
+            <span class="placeholder-text">[Photo 2]</span>
+          </div>
+        </div>
+        <div class="gallery-item animate-on-scroll">
+          <div class="gallery-placeholder">
+            <span class="placeholder-text">[Photo 3]</span>
+          </div>
+        </div>
+        <div class="gallery-item animate-on-scroll">
+          <div class="gallery-placeholder">
+            <span class="placeholder-text">[Photo 4]</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BACK TO HOME BUTTON -->
+  <div class="back-to-home">
+    <div class="container">
+      <a href="../index.html#social-work" class="btn-back">← Back to Social Work</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p class="footer-text">© 2026 Sonrise Ministry | Serving with Faith & Love</p>
+      <div class="social-icons">
+        <a href="#" class="social-link" aria-label="Facebook">f</a>
+        <a href="#" class="social-link" aria-label="Instagram">📷</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /**
+     * Community Outreach Page - Complete Script
+     * Handles text slider, mobile menu, and animations
+     */
+    (function() {
+      'use strict';
+
+      // ========== Text Slider with Color Changing Background ==========
+      const textSlides = document.querySelectorAll('.text-slide');
+      const pageHeader = document.getElementById('dynamicHeader');
+      
+      if (textSlides.length && pageHeader) {
+        let currentSlide = 0;
+        const totalSlides = textSlides.length;
+        
+        // Set initial background class
+        pageHeader.classList.add('bg-1');
+        
+        function changeSlide() {
+          // Remove active class from current slide
+          textSlides[currentSlide].classList.remove('active');
+          
+          // Remove current background class
+          pageHeader.classList.remove(`bg-${currentSlide + 1}`);
+          
+          // Move to next slide
+          currentSlide = (currentSlide + 1) % totalSlides;
+          
+          // Add active class to new slide
+          textSlides[currentSlide].classList.add('active');
+          
+          // Add new background class
+          pageHeader.classList.add(`bg-${currentSlide + 1}`);
+        }
+        
+        // Change slide every 4 seconds
+        setInterval(changeSlide, 4000);
+      }
+
+      // ========== Mobile Menu Toggle ==========
+      const navToggle = document.getElementById('navToggle');
+      const navMenu = document.getElementById('navMenu');
+
+      if (navToggle && navMenu) {
+        navToggle.addEventListener('click', function() {
+          navMenu.classList.toggle('active');
+          navToggle.classList.toggle('active');
+          document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+        });
+
+        navMenu.querySelectorAll('a').forEach(function(link) {
+          link.addEventListener('click', function() {
+            navMenu.classList.remove('active');
+            navToggle.classList.remove('active');
+            document.body.style.overflow = '';
+          });
+        });
+      }
+
+      // ========== Navbar Scroll Effect ==========
+      const navbar = document.getElementById('navbar');
+      
+      function handleNavbarScroll() {
+        if (window.scrollY > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      }
+      
+      window.addEventListener('scroll', handleNavbarScroll);
+      handleNavbarScroll();
+
+      // ========== Scroll Animations ==========
+      const animatedElements = document.querySelectorAll('.animate-on-scroll');
+
+      function isElementInViewport(el) {
+        const rect = el.getBoundingClientRect();
+        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+        const triggerPoint = windowHeight * 0.85;
+        return rect.top <= triggerPoint && rect.bottom >= 0;
+      }
+
+      function checkScrollAnimations() {
+        animatedElements.forEach(function(el) {
+          if (isElementInViewport(el)) {
+            el.classList.add('visible');
+          }
+        });
+      }
+
+      window.addEventListener('scroll', checkScrollAnimations);
+      window.addEventListener('load', checkScrollAnimations);
+    })();
+  </script>
+</body>
+</html>

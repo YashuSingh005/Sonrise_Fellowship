@@ -1,0 +1,610 @@
+/* ============================================
+   Sonrise Ministry - Modern Ministry Website
+   Primary: Red & White | Clean & Spiritual
+   ============================================ */
+
+:root {
+  --red-primary: #b71c1c;
+  --red-dark: #8b0000;
+  --red-light: #d32f2f;
+  --white: #ffffff;
+  --off-white: #fafafa;
+  --gray-light: #f5f5f5;
+  --gray-text: #555;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 8px 30px rgba(183, 28, 28, 0.15);
+  --transition: 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Source Sans 3', sans-serif;
+  color: #333;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* ========== NAVBAR ========== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--white);
+  box-shadow: var(--shadow);
+  z-index: 1000;
+  transition: background var(--transition), box-shadow var(--transition);
+}
+
+.navbar.scrolled {
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.12);
+}
+
+.nav-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--red-primary);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.logo:hover {
+  color: var(--red-dark);
+}
+
+.nav-menu {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-menu a {
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  position: relative;
+  transition: color var(--transition);
+}
+
+.nav-menu a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--red-primary);
+  transition: width var(--transition);
+}
+
+.nav-menu a:hover,
+.nav-menu a:focus {
+  color: var(--red-primary);
+}
+
+.nav-menu a:hover::after {
+  width: 100%;
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.nav-toggle span {
+  width: 24px;
+  height: 2px;
+  background: var(--red-primary);
+  transition: var(--transition);
+}
+
+.nav-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.nav-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ========== VERSE TICKER ========== */
+.verse-ticker {
+  background: var(--red-dark);
+  color: var(--white);
+  padding: 0.5rem 0;
+  overflow: hidden;
+  position: relative;
+  border-bottom: 2px solid rgba(255,255,255,0.2);
+}
+
+.ticker-content {
+  display: flex;
+  animation: ticker 25s linear infinite;
+  white-space: nowrap;
+}
+
+.ticker-content:hover {
+  animation-play-state: paused;
+}
+
+.verse {
+  padding: 0 2rem;
+  font-style: italic;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+}
+
+@keyframes ticker {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+/* ========== SECTION COMMON ========== */
+section {
+  position: relative;
+}
+
+.section-title {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  color: var(--red-primary);
+  text-align: center;
+  margin-bottom: 2.5rem;
+  font-weight: 600;
+  position: relative;
+  z-index: 2;
+}
+
+/* ========== CONTENT BLOCKS (for social work pages) ========== */
+.content-block {
+  padding: 5rem 0;
+  background: var(--white);
+}
+
+.content-block-alt {
+  background: var(--gray-light);
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.content-grid.reverse {
+  direction: rtl;
+}
+
+.content-grid.reverse .content-text {
+  direction: ltr;
+}
+
+.content-image {
+  width: 100%;
+}
+
+.image-placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.image-placeholder::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    left: 100%;
+  }
+}
+
+.placeholder-text {
+  color: #999;
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  z-index: 2;
+}
+
+.content-text {
+  padding: 1rem;
+}
+
+.content-title {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  color: var(--red-primary);
+  margin-bottom: 1.5rem;
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+}
+
+.content-paragraph {
+  font-size: 1.1rem;
+  color: var(--gray-text);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+/* ========== GALLERY SECTION ========== */
+.gallery-section {
+  padding: 5rem 0;
+  background: var(--white);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.gallery-item {
+  width: 100%;
+}
+
+.gallery-placeholder {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.gallery-placeholder:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.gallery-placeholder::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  animation: shimmer 2s infinite;
+}
+
+.gallery-placeholder .placeholder-text {
+  font-size: 0.9rem;
+}
+
+/* ========== BACK TO HOME BUTTON ========== */
+.back-to-home {
+  padding: 2rem 0 4rem;
+  text-align: center;
+  background: var(--white);
+}
+
+.btn-back {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  background: transparent;
+  color: var(--red-primary);
+  text-decoration: none;
+  font-weight: 600;
+  border: 2px solid var(--red-primary);
+  border-radius: 4px;
+  transition: background var(--transition), color var(--transition);
+  font-family: 'Source Sans 3', sans-serif;
+}
+
+.btn-back:hover {
+  background: var(--red-primary);
+  color: var(--white);
+}
+
+/* ========== FOOTER ========== */
+.footer {
+  background: var(--red-dark);
+  color: var(--white);
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.footer-content {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.footer-text {
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  opacity: 0.95;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--white);
+  text-decoration: none;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  transition: background var(--transition), transform var(--transition);
+}
+
+.social-link:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+/* ========== SCROLL ANIMATIONS ========== */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background: var(--white);
+    flex-direction: column;
+    padding: 5rem 2rem 2rem;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+    transition: right var(--transition);
+    gap: 1.5rem;
+  }
+
+  .nav-menu.active {
+    right: 0;
+  }
+
+  .nav-menu a::after {
+    display: none;
+  }
+
+  .content-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .content-grid.reverse {
+    direction: ltr;
+  }
+  
+  .content-grid.reverse .content-image {
+    order: -1;
+  }
+  
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .content-title {
+    font-size: 1.75rem;
+  }
+  
+  .content-paragraph {
+    font-size: 1rem;
+  }
+}
+/* ============================================
+   Community Outreach Page - Header Styles Only
+   ============================================ */
+
+/* Page Header with Dynamic Background */
+.page-header {
+  margin-top: 72px;
+  padding: 6rem 0 4rem;
+  color: white;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: background 1.5s ease-in-out;
+}
+
+/* Background colors for each slide */
+.page-header.bg-1 {
+  background: linear-gradient(135deg, #004d40 0%, #00695c 50%, #00796b 100%);
+}
+
+.page-header.bg-2 {
+  background: linear-gradient(135deg, #1a237e 0%, #283593 50%, #3949ab 100%);
+}
+
+.page-header.bg-3 {
+  background: linear-gradient(135deg, #b71c1c 0%, #c62828 50%, #d32f2f 100%);
+}
+
+.page-header.bg-4 {
+  background: linear-gradient(135deg, #4a148c 0%, #6a1b9a 50%, #7b1fa2 100%);
+}
+
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.3;
+  z-index: 1;
+}
+
+/* Text Slider Container */
+.text-slider-container {
+  position: relative;
+  height: auto;
+  min-height: 120px;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.text-slide {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.2;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  pointer-events: none;
+  margin: 0;
+  padding: 0;
+}
+
+.text-slide.active {
+  opacity: 1;
+  transform: translateY(0);
+  position: relative;
+}
+
+/* Glow animation */
+@keyframes textGlow {
+  0% {
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    text-shadow: 0 2px 30px rgba(255, 255, 255, 0.5);
+  }
+  100% {
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.text-slide.active {
+  animation: textGlow 2s ease;
+}
+
+.page-subtitle {
+  font-size: 1.25rem;
+  opacity: 0.95;
+  max-width: 700px;
+  margin: 1.5rem auto 0;
+  position: relative;
+  z-index: 2;
+  font-weight: 300;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .page-header {
+    padding: 5rem 0 3rem;
+  }
+  
+  .text-slider-container {
+    min-height: 100px;
+  }
+  
+  .text-slide {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .page-header {
+    padding: 4rem 0 2.5rem;
+  }
+  
+  .text-slider-container {
+    min-height: 90px;
+  }
+  
+  .text-slide {
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+  }
+  
+  .page-subtitle {
+    font-size: 1rem;
+  }
+}
