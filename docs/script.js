@@ -46,21 +46,21 @@
     emailjs.init('q-5DeiVSIk8f0Odxl');
   }
 
-  const contactForm = document.getElementById('contact-form');
-  if (contactForm) {
-    contactForm.addEventListener('submit', function (event) {
-      event.preventDefault();
+  // const contactForm = document.getElementById('contact-form');
+  // if (contactForm) {
+  //   contactForm.addEventListener('submit', function (event) {
+  //     event.preventDefault();
 
-      emailjs.sendForm('service_b1jmi0b', 'template_crxa6ne', this)
-        .then(function () {
-          alert('Message sent successfully!');
-          contactForm.reset();
-        }, function (error) {
-          console.error('EmailJS error:', error);
-          alert('Failed to send message. Please try again later.');
-        });
-    });
-  }
+  //     emailjs.sendForm('service_b1jmi0b', 'template_crxa6ne', this)
+  //       .then(function () {
+  //         alert('Message sent successfully!');
+  //         contactForm.reset();
+  //       }, function (error) {
+  //         console.error('EmailJS error:', error);
+  //         alert('Failed to send message. Please try again later.');
+  //       });
+  //   });
+  // }
 
   // ========== Scroll Animations ==========
   const animatedElements = document.querySelectorAll('.animate-on-scroll');

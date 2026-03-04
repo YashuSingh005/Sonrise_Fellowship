@@ -104,8 +104,10 @@
     <div class="container">
       <h2 class="section-title animate-on-scroll">Contact Us</h2>
       <div class="contact-wrapper animate-on-scroll">
-        <form class="contact-form" id="contact-form">
+        <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+          
           <div class="form-group">
+            <input type="hidden" name="access_key" value="602db4a9-6c35-4e46-9e65-1a3d591c9c54">
             <label for="from_name">Name</label>
             <input type="text" id="from_name" name="from_name" required placeholder="Your Name">
           </div>
