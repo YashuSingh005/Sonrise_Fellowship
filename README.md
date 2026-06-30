@@ -135,6 +135,6 @@ May God bless you abundantly as we continue to serve together in faith, hope, an
 *"Now these three remain: faith, hope and love. But the greatest of these is love."*  
 **— 1 Corinthians 13:13**
 
-**© 2026 Sonrise Ministry. All Rights Reserved.**
+**© 2026 Sonrise Ministry. All Rights Reserved..**
 
 </div>
