@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel | Sonrise Ministry</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .view { display: none; }
+    #view-login { display: block; }
+  </style>
+</head>
+<body>
+  <!-- LOGIN VIEW -->
+  <div id="view-login" class="view login-container">
+    <div class="login-card">
+      <h2>🔐 Admin Panel</h2>
+      <p>Sonrise Ministry - Content Management</p>
+      <form id="login-form">
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Enter admin password" required autocomplete="off">
+        </div>
+        <div id="login-error" style="display:none;color:#c62828;font-size:0.85rem;margin-bottom:0.8rem">Incorrect password</div>
+        <button type="submit" class="btn btn-block">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- APP VIEW -->
+  <div id="app-view" class="view" style="display:none">
+    <header class="admin-header">
+      <h1 class="logo"><a href="../index.html" target="_blank">✝️ Sonrise Admin</a></h1>
+      <nav class="admin-nav">
+        <a href="#" id="settings-btn">⚙️ Settings</a>
+        <button id="logout-btn">Logout</button>
+      </nav>
+    </header>
+
+    <main class="admin-main">
+      <!-- Loading -->
+      <div id="loading-indicator" style="display:none">
+        <div class="spinner"></div>
+        <p class="loading-text">Processing... please wait</p>
+      </div>
+
+      <!-- DASHBOARD VIEW -->
+      <div id="view-dashboard" class="view">
+        <h2 style="color:var(--red-primary);font-family:'Playfair Display',serif;">Dashboard</h2>
+        <p style="color:var(--gray-text);margin-bottom:0.5rem">Select a page to edit its content. Changes are saved directly to GitHub → Vercel auto-deploys.</p>
+        <div id="dashboard-grid" class="dashboard-grid">
+          <div class="loading-text">Loading...</div>
+        </div>
+      </div>
+
+      <!-- EDITOR VIEW -->
+      <div id="view-editor" class="view">
+        <div class="editor-header">
+          <h2 id="editor-title">Editing</h2>
+          <button class="btn btn-sm btn-outline" id="back-to-dashboard-btn" onclick="document.getElementById('back-to-dashboard').click()">← Back to Dashboard</button>
+        </div>
+        <div id="editor-content"></div>
+      </div>
+
+      <!-- SETTINGS VIEW -->
+      <div id="view-settings" class="view">
+        <div class="editor-header">
+          <h2 style="color:var(--red-primary)">⚙️ Settings</h2>
+          <button class="btn btn-sm btn-outline" id="back-to-dashboard">← Back to Dashboard</button>
+        </div>
+
+        <div class="settings-section">
+          <h3>GitHub Integration</h3>
+          <p style="color:var(--gray-text);font-size:0.9rem;margin-bottom:1rem">
+            Enter a GitHub Personal Access Token with <strong>repo</strong> scope so the admin panel can commit changes to your repository.<br>
+            Token is stored in your browser session only and never saved to disk.
+          </p>
+          <div class="form-group">
+            <label for="token-input">GitHub Personal Access Token</label>
+            <input type="password" id="token-input" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off">
+          </div>
+          <button class="btn" id="save-token">Save Token</button>
+          <p id="settings-status" style="margin-top:0.5rem;font-size:0.85rem;color:var(--gray-text)"></p>
+        </div>
+
+        <div class="settings-section">
+          <h3>Repository Info</h3>
+          <p style="color:var(--gray-text);font-size:0.9rem">
+            <strong>Owner:</strong> YashuSingh005<br>
+            <strong>Repo:</strong> Sonrise_Fellowship<br>
+            <strong>Branch:</strong> main<br>
+            <strong>Data File:</strong> docs/data/pages.json
+          </p>
+        </div>
+
+        <div class="settings-section">
+          <h3>How It Works</h3>
+          <ol style="color:var(--gray-text);font-size:0.9rem;padding-left:1.2rem;line-height:1.8">
+            <li>Edit page content in the visual editor</li>
+            <li>Upload images (stored in <code>docs/uploads/</code>)</li>
+            <li>Save commits changes to GitHub via API</li>
+            <li>Vercel detects the push and auto-deploys</li>
+            <li>Your live site updates in 1-2 minutes</li>
+          </ol>
+        </div>
+
+        <div class="settings-section">
+          <h3>Change Admin Password</h3>
+          <p style="color:var(--gray-text);font-size:0.9rem;margin-bottom:0.5rem">
+            The default password hash is in <code>docs/admin/app.js</code>. To change it:
+          </p>
+          <ol style="color:var(--gray-text);font-size:0.9rem;padding-left:1.2rem;line-height:1.8">
+            <li>Generate SHA-256 hash of your new password (use any online tool)</li>
+            <li>Replace <code>ADMIN_PASSWORD_HASH</code> in <code>docs/admin/app.js</code></li>
+            <li>Commit and push the change</li>
+          </ol>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

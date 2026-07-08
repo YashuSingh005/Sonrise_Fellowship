@@ -1,0 +1,76 @@
+{
+  "home": {
+    "heroSlides": [
+      "Serving Humanity with Faith & Love",
+      "Bringing Hope to the Hopeless",
+      "Spreading Compassion Through Action",
+      "Building Communities with Care"
+    ],
+    "heroSubtext": "Sonrise Ministry is dedicated to spreading hope through service, compassion, and faith.",
+    "aboutHeading": "About Sonrise Ministry",
+    "aboutText": "<p>Sonrise Ministry is committed to uplifting communities through social service, charity work, and spiritual outreach. Our mission is to bring hope, help the needy, and serve with love.</p>",
+    "socialWorkHeading": "Our Social Work",
+    "foodCard": { "icon": "🍽️", "heading": "Food Distribution", "text": "Providing meals to the needy and homeless.", "link": "food/index.html" },
+    "educationCard": { "icon": "📚", "heading": "Education Support", "text": "Helping children with study materials and guidance.", "link": "education/education-support.html" },
+    "outreachCard": { "icon": "❤️", "heading": "Community Outreach", "text": "Supporting families through care and prayer programs.", "link": "community_outreach/index.html" },
+    "contactHeading": "Contact Us",
+    "footerText": "© 2026 Sonrise Ministry | Serving with Faith & Love"
+  },
+  "food": {
+    "heroSlides": [
+      "Food Distribution",
+      "Feeding the Hungry",
+      "Nourishing Bodies",
+      "Sharing God's Blessings"
+    ],
+    "heroSubtext": "Providing meals to the needy and homeless with love and dignity",
+    "section1Heading": "Nourishing Bodies, Spreading Hope",
+    "section1Text1": "Our food distribution program provides nutritious meals to families in need, ensuring that no one goes hungry in our community.",
+    "section1Text2": "We work with local partners to identify those most in need and deliver meals with dignity and compassion.",
+    "section1Image": "food/image.png",
+    "section2Heading": "Weekly Community Meals",
+    "section2Text1": "Our weekly community meals bring families together in fellowship and nourishment. We serve hot, nutritious meals to anyone in need, regardless of background or circumstances.",
+    "section2Text2": "These meals are not just about food—they are opportunities to build community, show love, and provide hope to those who need it most.",
+    "section2Image": "food/image copy.png",
+    "galleryHeading": "Our Work in Action",
+    "gallery": ["food/image copy 2.png", "food/image copy 3.png", "food/image copy 4.png", "food/image copy 5.png"]
+  },
+  "education": {
+    "heroSlides": [
+      "Education Support",
+      "Empowering Young Minds",
+      "Building Bright Futures",
+      "Learning with Love"
+    ],
+    "heroSubtext": "Helping children with study materials and guidance for a brighter future",
+    "section1Heading": "Empowering Through Education",
+    "section1Text1": "We believe that education is a powerful tool for transformation. Our programs are designed to empower children with the knowledge, skills, and confidence they need to build a better future.",
+    "section1Text2": "Our work goes beyond textbooks and classrooms—we nurture the whole child, helping them grow not just academically, but emotionally and spiritually.",
+    "section1Image": "education/image copy 4.png",
+    "section2Heading": "Study Materials & Tutoring",
+    "section2Text1": "We provide study materials and one-on-one tutoring to help students succeed academically. Our volunteers work closely with children to improve their understanding of core subjects and build confidence in their learning journey.",
+    "section2Text2": "Our goal is to ensure that every child has access to the resources and support they need to thrive in school and beyond.",
+    "section2Image": "education/image copy 5.png",
+    "galleryHeading": "Moments of Learning",
+    "gallery": ["education/image copy.png", "education/image.png", "education/image copy 2.png", "education/image copy 3.png"]
+  },
+  "outreach": {
+    "heroSlides": [
+      "Community Outreach",
+      "Supporting Families in Need",
+      "Building Strong Communities",
+      "Spreading Love Through Action"
+    ],
+    "heroSubtext": "Supporting families through care, prayer programs, and community building",
+    "section1Heading": "Building Strong Communities",
+    "section1Text1": "We work to build strong, supportive communities by bringing people together through shared values and mutual care. Our initiatives focus on fostering connections between neighbors, families, and individuals.",
+    "section1Text2": "Through community events, volunteer opportunities, and collaborative projects, we help create environments where everyone feels valued and supported.",
+    "section1Image": "community_outreach/image.png",
+    "section2Heading": "Family Support & Prayer Programs",
+    "section2Text1": "We offer family support and prayer programs to strengthen relationships and provide spiritual care. These initiatives help families navigate challenges with faith, hope, and community support.",
+    "section2Text2": "Our prayer groups and family counseling sessions create safe spaces for healing, growth, and connection within the community.",
+    "section2Image": "community_outreach/image copy.png",
+    "galleryHeading": "Community in Action",
+    "gallery": ["community_outreach/image copy 2.png", "community_outreach/image copy 3.png", "community_outreach/image copy 2.png", "community_outreach/image copy 5.png"]
+  }
+}

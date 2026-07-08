@@ -650,19 +650,19 @@
 
   <!-- SECTION 1: Image Left, Text Right -->
   <section class="content-block">
-    <div class="container">
-      <div class="content-grid">
-        <!-- Left: Image Placeholder -->
-        <div class="animate-on-scroll">
-          <div class="image-placeholder" style="background-image: url('image.png'); background-size: cover;">
-            <span class="placeholder-text"></span>
-          </div>
-        </div>
-        <!-- Right: Text -->
-        <div class="content-text animate-on-scroll">
-          <h2 class="content-title">Building Strong Communities</h2>
-          <p class="content-paragraph">We work to build strong, supportive communities by bringing people together through shared values and mutual care. Our initiatives focus on fostering connections between neighbors, families, and individuals.</p>
-          <p class="content-paragraph">Through community events, volunteer opportunities, and collaborative projects, we help create environments where everyone feels valued and supported.</p>
+        <div class="container">
+          <div class="content-grid">
+            <!-- Left: Image Placeholder -->
+            <div class="animate-on-scroll">
+              <div class="image-placeholder" id="section1-image" style="background-image: url('image.png'); background-size: cover;">
+                <span class="placeholder-text"></span>
+              </div>
+            </div>
+            <!-- Right: Text -->
+            <div class="content-text animate-on-scroll">
+              <h2 class="content-title" id="section1-heading">Building Strong Communities</h2>
+              <p class="content-paragraph" id="section1-text1">We work to build strong, supportive communities by bringing people together through shared values and mutual care. Our initiatives focus on fostering connections between neighbors, families, and individuals.</p>
+              <p class="content-paragraph" id="section1-text2">Through community events, volunteer opportunities, and collaborative projects, we help create environments where everyone feels valued and supported.</p>
         </div>
       </div>
     </div>
@@ -670,17 +670,17 @@
 
   <!-- SECTION 2: Text Left, Image Right -->
   <section class="content-block content-block-alt">
-    <div class="container">
-      <div class="content-grid reverse">
-        <!-- Left: Text -->
-        <div class="content-text animate-on-scroll">
-          <h2 class="content-title">Family Support & Prayer Programs</h2>
-          <p class="content-paragraph">We offer family support and prayer programs to strengthen relationships and provide spiritual care. These initiatives help families navigate challenges with faith, hope, and community support.</p>
-          <p class="content-paragraph">Our prayer groups and family counseling sessions create safe spaces for healing, growth, and connection within the community.</p>
-        </div>
-        <!-- Right: Image Placeholder -->
-        <div class="animate-on-scroll">
-          <div class="image-placeholder" style="background-image: url('image copy.png'); background-size: cover;">
+        <div class="container">
+          <div class="content-grid reverse">
+            <!-- Left: Text -->
+            <div class="content-text animate-on-scroll">
+              <h2 class="content-title" id="section2-heading">Family Support & Prayer Programs</h2>
+              <p class="content-paragraph" id="section2-text1">We offer family support and prayer programs to strengthen relationships and provide spiritual care. These initiatives help families navigate challenges with faith, hope, and community support.</p>
+              <p class="content-paragraph" id="section2-text2">Our prayer groups and family counseling sessions create safe spaces for healing, growth, and connection within the community.</p>
+            </div>
+            <!-- Right: Image Placeholder -->
+            <div class="animate-on-scroll">
+              <div class="image-placeholder" id="section2-image" style="background-image: url('image copy.png'); background-size: cover;">
             <span class="placeholder-text"></span>
           </div>
         </div>
@@ -691,7 +691,7 @@
   <!-- GALLERY SECTION -->
   <section class="gallery-section">
     <div class="container">
-      <h2 class="section-title animate-on-scroll">Community in Action</h2>
+      <h2 class="section-title animate-on-scroll" id="gallery-heading">Community in Action</h2>
       <div class="gallery-grid">
         <div class="gallery-item animate-on-scroll">
           <div class="gallery-placeholder" style="background-image: url('image copy 2.png'); background-size: cover;">
@@ -727,7 +727,7 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-content">
-      <p class="footer-text">© 2026 Sonrise Ministry | Serving with Faith & Love</p>
+      <p class="footer-text" id="footer-text">© 2026 Sonrise Ministry | Serving with Faith & Love</p>
       <div class="social-icons">
         <a href="#" class="social-link" aria-label="Facebook">f</a>
         <a href="#" class="social-link" aria-label="Instagram">📷</a>
@@ -735,6 +735,7 @@
     </div>
   </footer>
 
+  <script src="../data/content-loader.js"></script>
   <script>
     /**
      * Community Outreach Page - Complete Script

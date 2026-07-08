@@ -650,19 +650,19 @@
 
   <!-- SECTION 1: Image Left, Text Right -->
   <section class="content-block">
-    <div class="container">
-      <div class="content-grid">
-        <!-- Left: Image Placeholder -->
-        <div class="animate-on-scroll">
-          <div class="image-placeholder" style="background-image: url('image.png'); background-size: cover;">
-            <span class="placeholder-text"></span>
-          </div>
-        </div>
-        <!-- Right: Text -->
-        <div class="content-text animate-on-scroll">
-          <h2 class="content-title">Nourishing Bodies, Spreading Hope</h2>
-          <p class="content-paragraph">Our food distribution program provides nutritious meals to families in need, ensuring that no one goes hungry in our community.</p>
-          <p class="content-paragraph">We work with local partners to identify those most in need and deliver meals with dignity and compassion.</p>
+        <div class="container">
+          <div class="content-grid">
+            <!-- Left: Image Placeholder -->
+            <div class="animate-on-scroll">
+              <div class="image-placeholder" id="section1-image" style="background-image: url('image.png'); background-size: cover;">
+                <span class="placeholder-text"></span>
+              </div>
+            </div>
+            <!-- Right: Text -->
+            <div class="content-text animate-on-scroll">
+              <h2 class="content-title" id="section1-heading">Nourishing Bodies, Spreading Hope</h2>
+              <p class="content-paragraph" id="section1-text1">Our food distribution program provides nutritious meals to families in need, ensuring that no one goes hungry in our community.</p>
+              <p class="content-paragraph" id="section1-text2">We work with local partners to identify those most in need and deliver meals with dignity and compassion.</p>
         </div>
       </div>
     </div>
@@ -670,17 +670,17 @@
 
   <!-- SECTION 2: Text Left, Image Right -->
   <section class="content-block content-block-alt">
-    <div class="container">
-      <div class="content-grid reverse">
-        <!-- Left: Text -->
-        <div class="content-text animate-on-scroll">
-          <h2 class="content-title">Weekly Community Meals</h2>
-          <p class="content-paragraph">Our weekly community meals bring families together in fellowship and nourishment. We serve hot, nutritious meals to anyone in need, regardless of background or circumstances.</p>
-          <p class="content-paragraph">These meals are not just about food—they are opportunities to build community, show love, and provide hope to those who need it most.</p>
-        </div>
-        <!-- Right: Image Placeholder -->
-        <div class="animate-on-scroll">
-          <div class="image-placeholder" style="background-image: url('image copy.png'); background-size: cover;">
+        <div class="container">
+          <div class="content-grid reverse">
+            <!-- Left: Text -->
+            <div class="content-text animate-on-scroll">
+              <h2 class="content-title" id="section2-heading">Weekly Community Meals</h2>
+              <p class="content-paragraph" id="section2-text1">Our weekly community meals bring families together in fellowship and nourishment. We serve hot, nutritious meals to anyone in need, regardless of background or circumstances.</p>
+              <p class="content-paragraph" id="section2-text2">These meals are not just about food—they are opportunities to build community, show love, and provide hope to those who need it most.</p>
+            </div>
+            <!-- Right: Image Placeholder -->
+            <div class="animate-on-scroll">
+              <div class="image-placeholder" id="section2-image" style="background-image: url('image copy.png'); background-size: cover;">
             <span class="placeholder-text"></span>
           </div>
         </div>
@@ -691,7 +691,7 @@
   <!-- GALLERY SECTION -->
   <section class="gallery-section">
     <div class="container">
-      <h2 class="section-title animate-on-scroll">Our Work in Action</h2>
+      <h2 class="section-title animate-on-scroll" id="gallery-heading">Our Work in Action</h2>
       <div class="gallery-grid">
         <div class="gallery-item animate-on-scroll">
           <div class="gallery-placeholder" style="background-image: url('image copy 2.png'); background-size: cover;">
@@ -727,7 +727,7 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-content">
-      <p class="footer-text">© 2026 Sonrise Ministry | Serving with Faith & Love</p>
+      <p class="footer-text" id="footer-text">© 2026 Sonrise Ministry | Serving with Faith & Love</p>
       <div class="social-icons">
         <a href="#" class="social-link" aria-label="Facebook">f</a>
         <a href="#" class="social-link" aria-label="Instagram">📷</a>
@@ -735,6 +735,7 @@
     </div>
   </footer>
 
+  <script src="../data/content-loader.js"></script>
   <script>
     /**
      * Food Distribution Page - Complete Script

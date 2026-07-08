@@ -62,8 +62,8 @@
     <div class="parallax-bubble bubble-2"></div>
     <div class="parallax-bubble bubble-3"></div>
     <div class="container">
-      <h2 class="section-title animate-on-scroll">About Sonrise Ministry</h2>
-      <div class="about-content animate-on-scroll">
+      <h2 class="section-title animate-on-scroll" id="about-heading">About Sonrise Ministry</h2>
+      <div class="about-content animate-on-scroll" id="about-text">
         <p>Sonrise Ministry is committed to uplifting communities through social service, charity work, and spiritual outreach. Our mission is to bring hope, help the needy, and serve with love.</p>
       </div>
     </div>
@@ -75,24 +75,24 @@
     <div class="parallax-line line-2"></div>
     <div class="parallax-line line-3"></div>
     <div class="container">
-      <h2 class="section-title animate-on-scroll">Our Social Work</h2>
+      <h2 class="section-title animate-on-scroll" id="social-work-heading">Our Social Work</h2>
       <div class="cards">
         <article class="card animate-on-scroll">
           <div class="card-icon">🍽️</div>
-          <h3>Food Distribution</h3>
-          <p>Providing meals to the needy and homeless.</p>
+          <h3 id="food-card-heading">Food Distribution</h3>
+          <p id="food-card-text">Providing meals to the needy and homeless.</p>
           <a href="food/index.html" class="card-btn">Learn More →</a>
         </article>
         <article class="card animate-on-scroll">
           <div class="card-icon">📚</div>
-          <h3>Education Support</h3>
-          <p>Helping children with study materials and guidance.</p>
+          <h3 id="education-card-heading">Education Support</h3>
+          <p id="education-card-text">Helping children with study materials and guidance.</p>
           <a href="education/education-support.html" class="card-btn">Learn More →</a>
         </article>
         <article class="card animate-on-scroll">
           <div class="card-icon">❤️</div>
-          <h3>Community Outreach</h3>
-          <p>Supporting families through care and prayer programs.</p>
+          <h3 id="outreach-card-heading">Community Outreach</h3>
+          <p id="outreach-card-text">Supporting families through care and prayer programs.</p>
           <a href="community_outreach/index.html" class="card-btn">Learn More →</a>
         </article>
       </div>
@@ -102,7 +102,7 @@
   <!-- CONTACT SECTION -->
   <section class="contact" id="contact">
     <div class="container">
-      <h2 class="section-title animate-on-scroll">Contact Us</h2>
+      <h2 class="section-title animate-on-scroll" id="contact-heading">Contact Us</h2>
       <div class="contact-wrapper animate-on-scroll">
         <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
           
@@ -134,7 +134,7 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-content">
-      <p class="footer-text">© 2026 Sonrise Ministry | Serving with Faith & Love</p>
+      <p class="footer-text" id="footer-text">© 2026 Sonrise Ministry | Serving with Faith & Love</p>
       <div class="social-icons">
         <a href="#" class="social-link" aria-label="Facebook">f</a>
         <a href="#" class="social-link" aria-label="Instagram">📷</a>
@@ -144,6 +144,7 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+  <script src="data/content-loader.js"></script>
   <script src="script.js"></script>
   <script>
     (function(){
