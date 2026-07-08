@@ -13,8 +13,9 @@
 
   function imgPath(p) {
     var page = getPageKey();
-    if (page === 'home') return p;
-    return '../' + p;
+    var base = (page === 'home') ? p : '../' + p;
+    // Encode spaces and special characters so CSS url() handles filenames correctly
+    return base.split('/').map(function (seg) { return encodeURIComponent(seg); }).join('/');
   }
 
   function applyContent(data) {
