@@ -1,11 +1,7 @@
 (function () {
   'use strict';
 
-  var SITE_DATA_URL = (function () {
-    var scripts = document.getElementsByTagName('script');
-    var src = scripts[scripts.length - 1].src;
-    return src.substring(0, src.lastIndexOf('/')) + '/pages.json';
-  })();
+  var SITE_DATA_URL = '/data/pages.json';
 
   function getPageKey() {
     var path = window.location.pathname;
@@ -140,7 +136,10 @@
   }
 
   fetch(SITE_DATA_URL)
-    .then(function (r) { return r.json(); })
+    .then(function (r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    })
     .then(applyContent)
-    .catch(function () { });
+    .catch(function (e) { console.warn('Content-loader:', e.message); });
 })();

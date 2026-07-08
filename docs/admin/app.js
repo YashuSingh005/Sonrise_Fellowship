@@ -460,6 +460,9 @@
       return;
     }
     var newData = collectFieldData();
+    if (siteData[currentPage].gallery) {
+      newData.gallery = siteData[currentPage].gallery;
+    }
     siteData[currentPage] = newData;
     var fullData = JSON.parse(JSON.stringify(siteData));
 
