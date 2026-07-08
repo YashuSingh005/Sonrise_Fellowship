@@ -83,18 +83,15 @@
   }
 
   async function uploadImage(file) {
-    // Bug fix: check token before attempting upload
-    if (!getToken()) throw new Error('No GitHub token configured. Go to Settings and add your token.');
-
     var ext = file.name.split('.').pop();
     var filename = Date.now() + '-' + Math.random().toString(36).substr(2, 6) + '.' + ext;
-    var filePath = 'docs/uploads/' + filename;
+    var path = 'docs/uploads/' + filename;
 
     return new Promise(function (resolve, reject) {
       var reader = new FileReader();
       reader.onload = async function (e) {
         var base64 = e.target.result.split(',')[1];
-        var sha = await getFileSha(filePath);
+        var sha = await getFileSha(path);
         var body = {
           message: 'Upload image: ' + filename,
           content: base64,
@@ -102,9 +99,8 @@
         };
         if (sha) body.sha = sha;
         try {
-          await githubApi('PUT', 'contents/' + filePath, body);
-          // Bug fix: resolve with just the filename so callers get a clean, unambiguous value
-          resolve(filename);
+          await githubApi('PUT', 'contents/' + path, body);
+          resolve(GITHUB_OWNER + '/' + GITHUB_REPO + '/' + GITHUB_BRANCH + '/' + path);
         } catch (e) { reject(e); }
       };
       reader.onerror = reject;
@@ -414,10 +410,6 @@
   }
 
   async function uploadAndSetField(fieldKey) {
-    if (!getToken()) {
-      showToast('Please configure your GitHub token in Settings first', 'error');
-      return;
-    }
     var input = document.createElement('input');
     input.type = 'file';
     input.accept = 'image/*';
@@ -425,10 +417,11 @@
       if (!input.files[0]) return;
       loading(true);
       try {
-        var filename = await uploadImage(input.files[0]);
+        var url = await uploadImage(input.files[0]);
+        var rawUrl = GITHUB_OWNER + '/' + GITHUB_REPO + '/main/docs/uploads/' + url.split('/').pop();
+        showToast('Image uploaded! Copy the URL to use it.', 'success');
         var inp = document.querySelector('.field[data-key="' + fieldKey + '"]');
-        if (inp) inp.value = 'uploads/' + filename;
-        showToast('Image uploaded and URL set!', 'success');
+        if (inp) inp.value = 'uploads/' + url.split('/').pop();
       } catch (e) {
         showToast('Upload failed: ' + e.message, 'error');
       }
@@ -438,21 +431,12 @@
   }
 
   function handleGalleryUpload(files) {
-    if (!getToken()) {
-      showToast('Please configure your GitHub token in Settings first', 'error');
-      return;
-    }
     Array.from(files).forEach(function (file) {
       if (!siteData[currentPage].gallery) siteData[currentPage].gallery = [];
       loading(true);
-      uploadImage(file).then(function (filename) {
+      uploadImage(file).then(function (url) {
+        var filename = url.split('/').pop();
         var relPath = 'uploads/' + filename;
-        // Prevent duplicate entries — skip if this path is already in the gallery
-        if (siteData[currentPage].gallery.indexOf(relPath) !== -1) {
-          loading(false);
-          showToast('This image is already in the gallery', 'info');
-          return;
-        }
         siteData[currentPage].gallery.push(relPath);
         renderEditor(currentPage);
         loading(false);

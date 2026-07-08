@@ -260,52 +260,42 @@ h1, h2, h3, h4 {
 }
 
 .image-preview {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  display: flex;
   gap: 1rem;
+  flex-wrap: wrap;
   margin-top: 1rem;
 }
 
 .image-preview-item {
-  aspect-ratio: 1 / 1;
-  border-radius: 8px;
+  width: 120px;
+  height: 120px;
+  border-radius: 6px;
   overflow: hidden;
   position: relative;
-  background: #000;           /* black fills any letterbox/pillarbox space */
   box-shadow: var(--shadow);
-  border: 1px solid rgba(0,0,0,0.12);
 }
 
 .image-preview-item img {
   width: 100%;
   height: 100%;
-  object-fit: contain;        /* show full image, no cropping */
-  object-position: center;
-  display: block;
+  object-fit: cover;
 }
 
 .image-preview-item .remove-img {
   position: absolute;
-  top: 6px;
-  right: 6px;
-  background: rgba(0,0,0,0.7);
-  color: #fff;
+  top: 4px;
+  right: 4px;
+  background: rgba(0,0,0,0.6);
+  color: white;
   border: none;
   border-radius: 50%;
-  width: 26px;
-  height: 26px;
+  width: 22px;
+  height: 22px;
   cursor: pointer;
-  font-size: 14px;
-  font-weight: bold;
+  font-size: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background var(--transition);
-  line-height: 1;
-}
-
-.image-preview-item .remove-img:hover {
-  background: rgba(198, 40, 40, 0.9);
 }
 
 /* ========== TOAST ========== */

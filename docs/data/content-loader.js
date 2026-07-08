@@ -13,9 +13,8 @@
 
   function imgPath(p) {
     var page = getPageKey();
-    var base = (page === 'home') ? p : '../' + p;
-    // Encode spaces and special characters so CSS url() handles filenames correctly
-    return base.split('/').map(function (seg) { return encodeURIComponent(seg); }).join('/');
+    if (page === 'home') return p;
+    return '../' + p;
   }
 
   function applyContent(data) {
@@ -96,33 +95,12 @@
     }
 
     if (content.gallery) {
-      var galleryGrid = document.querySelector('.gallery-grid');
-      if (galleryGrid) {
-        // Fully rebuild the gallery grid from data so uploaded images always appear
-        galleryGrid.innerHTML = '';
-        content.gallery.forEach(function (imgSrc) {
-          var item = document.createElement('div');
-          item.className = 'gallery-item animate-on-scroll';
-          var placeholder = document.createElement('div');
-          placeholder.className = 'gallery-placeholder';
-          placeholder.style.backgroundImage = "url('" + imgPath(imgSrc) + "')";
-          placeholder.style.backgroundSize = 'cover';
-          placeholder.style.backgroundPosition = 'center';
-          var span = document.createElement('span');
-          span.className = 'placeholder-text';
-          placeholder.appendChild(span);
-          item.appendChild(placeholder);
-          galleryGrid.appendChild(item);
-        });
-      } else {
-        // Fallback: update existing placeholders by index
-        var items = document.querySelectorAll('.gallery-placeholder');
-        items.forEach(function (el, i) {
-          if (content.gallery[i]) {
-            el.style.backgroundImage = "url('" + imgPath(content.gallery[i]) + "')";
-          }
-        });
-      }
+      var items = document.querySelectorAll('.gallery-placeholder');
+      items.forEach(function (el, i) {
+        if (content.gallery[i]) {
+          el.style.backgroundImage = "url('" + imgPath(content.gallery[i]) + "')";
+        }
+      });
     }
 
     if (content.footerText) {
