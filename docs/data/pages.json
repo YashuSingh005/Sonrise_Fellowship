@@ -10,9 +10,24 @@
     "aboutHeading": "About Sonrise Ministry",
     "aboutText": "<p>Sonrise Ministry is committed to uplifting communities through social service, charity work, and spiritual outreach. Our mission is to bring hope, help the needy, and serve with love.</p>",
     "socialWorkHeading": "Our Social Work",
-    "foodCard": { "icon": "🍽️", "heading": "Food Distribution", "text": "Providing meals to the needy and homeless.", "link": "food/index.html" },
-    "educationCard": { "icon": "📚", "heading": "Education Support", "text": "Helping children with study materials and guidance.", "link": "education/education-support.html" },
-    "outreachCard": { "icon": "❤️", "heading": "Community Outreach", "text": "Supporting families through care and prayer programs.", "link": "community_outreach/index.html" },
+    "foodCard": {
+      "icon": "🍽️",
+      "heading": "Food Distribution",
+      "text": "Providing meals to the needy and homeless.",
+      "link": "food/index.html"
+    },
+    "educationCard": {
+      "icon": "📚",
+      "heading": "Education Support",
+      "text": "Helping children with study materials and guidance.",
+      "link": "education/education-support.html"
+    },
+    "outreachCard": {
+      "icon": "❤️",
+      "heading": "Community Outreach",
+      "text": "Supporting families through care and prayer programs.",
+      "link": "community_outreach/index.html"
+    },
     "contactHeading": "Contact Us",
     "footerText": "© 2026 Sonrise Ministry | Serving with Faith & Love"
   },
@@ -33,7 +48,12 @@
     "section2Text2": "These meals are not just about food—they are opportunities to build community, show love, and provide hope to those who need it most.",
     "section2Image": "food/image copy.png",
     "galleryHeading": "Our Work in Action",
-    "gallery": ["food/image copy 2.png", "food/image copy 3.png", "food/image copy 4.png", "food/image copy 5.png"]
+    "gallery": [
+      "food/image copy 2.png",
+      "food/image copy 3.png",
+      "food/image copy 4.png",
+      "food/image copy 5.png"
+    ]
   },
   "education": {
     "heroSlides": [
@@ -52,7 +72,12 @@
     "section2Text2": "Our goal is to ensure that every child has access to the resources and support they need to thrive in school and beyond.",
     "section2Image": "education/image copy 5.png",
     "galleryHeading": "Moments of Learning",
-    "gallery": ["education/image copy.png", "education/image.png", "education/image copy 2.png", "education/image copy 3.png"]
+    "gallery": [
+      "education/image copy.png",
+      "education/image.png",
+      "education/image copy 2.png",
+      "education/image copy 3.png"
+    ]
   },
   "outreach": {
     "heroSlides": [
@@ -71,6 +96,11 @@
     "section2Text2": "Our prayer groups and family counseling sessions create safe spaces for healing, growth, and connection within the community.",
     "section2Image": "community_outreach/image copy.png",
     "galleryHeading": "Community in Action",
-    "gallery": ["community_outreach/image copy 2.png", "community_outreach/image copy 3.png", "community_outreach/image copy 2.png", "community_outreach/image copy 5.png"]
+    "gallery": [
+      "community_outreach/image copy 2.png",
+      "community_outreach/image copy 3.png",
+      "community_outreach/image copy 2.png",
+      "community_outreach/image copy 5.png"
+    ]
   }
 }
