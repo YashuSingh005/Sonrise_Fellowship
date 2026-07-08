@@ -89,13 +89,19 @@
 
     return new Promise(function (resolve, reject) {
       var reader = new FileReader();
-      reader.onload = function (e) {
+      reader.onload = async function (e) {
         var base64 = e.target.result.split(',')[1];
-        commitFile(path, atob(base64), 'Upload image: ' + filename)
-          .then(function () {
-            resolve(GITHUB_OWNER + '/' + GITHUB_REPO + '/main/' + path);
-          })
-          .catch(reject);
+        var sha = await getFileSha(path);
+        var body = {
+          message: 'Upload image: ' + filename,
+          content: base64,
+          branch: GITHUB_BRANCH
+        };
+        if (sha) body.sha = sha;
+        try {
+          await githubApi('PUT', 'contents/' + path, body);
+          resolve(GITHUB_OWNER + '/' + GITHUB_REPO + '/' + GITHUB_BRANCH + '/' + path);
+        } catch (e) { reject(e); }
       };
       reader.onerror = reject;
       reader.readAsDataURL(file);
