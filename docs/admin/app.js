@@ -469,7 +469,7 @@
 
   // ========== INIT ==========
   async function initApp() {
-    document.getElementById('login-view').style.display = 'none';
+    document.getElementById('view-login').style.display = 'none';
     document.getElementById('app-view').style.display = 'block';
     setupSettings();
     if (getToken()) {
