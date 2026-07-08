@@ -1,7 +1,11 @@
 (function () {
   'use strict';
 
-  var SITE_DATA_URL = 'data/pages.json';
+  var SITE_DATA_URL = (function () {
+    var scripts = document.getElementsByTagName('script');
+    var src = scripts[scripts.length - 1].src;
+    return src.substring(0, src.lastIndexOf('/')) + '/pages.json';
+  })();
 
   function getPageKey() {
     var path = window.location.pathname;
