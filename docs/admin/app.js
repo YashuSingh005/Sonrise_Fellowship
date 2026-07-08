@@ -11,8 +11,8 @@
   let siteData = null;
   let originalData = null;
 
-  function getToken() { return sessionStorage.getItem('gh_token'); }
-  function setToken(t) { sessionStorage.setItem('gh_token', t); }
+  function getToken() { return localStorage.getItem('gh_token'); }
+  function setToken(t) { localStorage.setItem('gh_token', t); }
 
   function showView(id) {
     document.querySelectorAll('.view').forEach(function (v) { v.style.display = 'none'; });
@@ -138,7 +138,6 @@
 
   document.getElementById('logout-btn').addEventListener('click', function () {
     sessionStorage.removeItem('admin_auth');
-    sessionStorage.removeItem('gh_token');
     location.reload();
   });
 
@@ -152,10 +151,19 @@
     var token = document.getElementById('token-input').value.trim();
     if (token) {
       setToken(token);
-      document.getElementById('settings-status').textContent = 'Token saved for this session';
+      document.getElementById('settings-status').textContent = 'Token saved - persists across sessions';
       document.getElementById('settings-status').style.color = '#2e7d32';
     } else {
       showToast('Please enter a valid token', 'error');
+    }
+  });
+
+  document.getElementById('clear-token').addEventListener('click', function () {
+    if (confirm('Remove the saved GitHub token?')) {
+      localStorage.removeItem('gh_token');
+      document.getElementById('token-input').value = '';
+      document.getElementById('settings-status').textContent = 'Token removed';
+      document.getElementById('settings-status').style.color = '#c62828';
     }
   });
 

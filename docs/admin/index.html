@@ -76,13 +76,16 @@
           <h3>GitHub Integration</h3>
           <p style="color:var(--gray-text);font-size:0.9rem;margin-bottom:1rem">
             Enter a GitHub Personal Access Token with <strong>repo</strong> scope so the admin panel can commit changes to your repository.<br>
-            Token is stored in your browser session only and never saved to disk.
+            Token is stored in your browser (persists across sessions) - set once, used by all logins until removed.
           </p>
           <div class="form-group">
             <label for="token-input">GitHub Personal Access Token</label>
             <input type="password" id="token-input" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off">
           </div>
-          <button class="btn" id="save-token">Save Token</button>
+          <div style="display:flex;gap:0.5rem">
+            <button class="btn" id="save-token">Save Token</button>
+            <button class="btn btn-danger" id="clear-token">Remove Token</button>
+          </div>
           <p id="settings-status" style="margin-top:0.5rem;font-size:0.85rem;color:var(--gray-text)"></p>
         </div>
 
