@@ -13,8 +13,8 @@
 
   function imgPath(p) {
     var page = getPageKey();
-    if (page === 'home') return p;
-    return '../' + p;
+    if (page === 'home') return encodeURI(p);
+    return encodeURI('../' + p);
   }
 
   function applyContent(data) {
