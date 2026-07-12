@@ -29,11 +29,18 @@ html {
   scroll-behavior: smooth;
 }
 
+@supports (padding: env(safe-area-inset-top)) {
+  .navbar { padding-top: env(safe-area-inset-top); padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
+  .footer { padding-bottom: calc(2.5rem + env(safe-area-inset-bottom)); }
+  .nav-menu { padding-top: calc(5rem + env(safe-area-inset-top)) !important; padding-bottom: calc(2rem + env(safe-area-inset-bottom)) !important; }
+}
+
 body {
   font-family: 'Source Sans 3', sans-serif;
   color: #333;
   line-height: 1.6;
   overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
 }
 
 h1, h2, h3 {
@@ -62,6 +69,24 @@ h1, h2, h3 {
 
 .navbar.scrolled {
   box-shadow: 0 4px 25px rgba(0, 0, 0, 0.12);
+}
+
+.nav-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 999;
+}
+
+.nav-overlay.active {
+  opacity: 1;
+  visibility: visible;
 }
 
 .nav-container {
@@ -127,7 +152,11 @@ h1, h2, h3 {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0.5rem;
+  padding: 0.75rem;
+  min-width: 44px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
 }
 
 .nav-toggle span {
@@ -152,6 +181,7 @@ h1, h2, h3 {
 /* ========== HERO SECTION WITH BACKGROUND SLIDER ========== */
 .hero {
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -197,6 +227,27 @@ h1, h2, h3 {
   background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   opacity: 0.5;
   z-index: 1;
+}
+
+/* Dawn Light — ambient sunrise glow behind hero text */
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -10%;
+  left: 50%;
+  width: 90%;
+  max-width: 700px;
+  aspect-ratio: 2 / 1;
+  background: radial-gradient(ellipse at center, rgba(255,215,150,0.18) 0%, rgba(255,200,100,0.08) 35%, transparent 70%);
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 1;
+  animation: dawnPulse 6s ease-in-out infinite;
+}
+
+@keyframes dawnPulse {
+  0%, 100% { opacity: 0.5; transform: translateX(-50%) scale(1); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.12); }
 }
 
 .hero-content {
@@ -698,8 +749,8 @@ section {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   background: rgba(255, 255, 255, 0.15);
   color: var(--white);
   text-decoration: none;
@@ -742,6 +793,12 @@ section {
 }
 
 /* ========== RESPONSIVE ========== */
+@media (max-width: 1024px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
   .nav-toggle {
     display: flex;
@@ -838,6 +895,24 @@ section {
     height: 80px;
   }
 }
+
+@media (max-width: 360px) {
+  .hero {
+    padding: 4.5rem 0.75rem 2.5rem;
+  }
+  .container {
+    padding: 0 0.75rem;
+  }
+  .logo {
+    font-size: 1.1rem;
+  }
+  .text-slide {
+    font-size: clamp(1.25rem, 4vw, 1.5rem);
+  }
+  .cards {
+    gap: 1rem;
+  }
+}
 .verse-ticker {
   background: linear-gradient(90deg, var(--red-dark), var(--red-primary), var(--red-dark));
   color: var(--white);
@@ -849,8 +924,9 @@ section {
 
 .ticker-content {
   display: flex;
-  animation: ticker 25s linear infinite;
+  animation: ticker 30s linear infinite;
   white-space: nowrap;
+  will-change: transform;
 }
 
 .ticker-content:hover {
@@ -862,9 +938,10 @@ section {
   font-style: italic;
   font-size: 0.95rem;
   letter-spacing: 0.5px;
+  flex-shrink: 0;
 }
 
 @keyframes ticker {
-  0% { transform: translateX(100%); }
-  100% { transform: translateX(-100%); }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }

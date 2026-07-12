@@ -10,21 +10,33 @@
   const navToggle = document.getElementById('navToggle');
   const navMenu = document.getElementById('navMenu');
   const navbar = document.getElementById('navbar');
+  const navOverlay = document.getElementById('navOverlay');
 
   // ========== Mobile Menu Toggle ==========
+  function toggleMenu(open) {
+    var isOpen = open !== undefined ? open : !navMenu.classList.contains('active');
+    navMenu.classList.toggle('active', isOpen);
+    navToggle.classList.toggle('active', isOpen);
+    if (navOverlay) navOverlay.classList.toggle('active', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  }
+
   if (navToggle && navMenu) {
     navToggle.addEventListener('click', function () {
-      navMenu.classList.toggle('active');
-      navToggle.classList.toggle('active');
-      document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+      toggleMenu();
     });
+
+    // Close menu when clicking overlay
+    if (navOverlay) {
+      navOverlay.addEventListener('click', function () {
+        toggleMenu(false);
+      });
+    }
 
     // Close menu when clicking a nav link (smooth scroll then close)
     navMenu.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', function () {
-        navMenu.classList.remove('active');
-        navToggle.classList.remove('active');
-        document.body.style.overflow = '';
+        toggleMenu(false);
       });
     });
   }
@@ -131,8 +143,9 @@
   });
 
   // ========== Parallax Effect on Mouse Move ==========
-  const aboutSection = document.querySelector('.about');
-  const socialWorkSection = document.querySelector('.social-work');
+  var isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  var aboutSection = isTouchDevice ? null : document.querySelector('.about');
+  var socialWorkSection = isTouchDevice ? null : document.querySelector('.social-work');
   
   if (aboutSection) {
     const bubbles = aboutSection.querySelectorAll('.parallax-bubble');

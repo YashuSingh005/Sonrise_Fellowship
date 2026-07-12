@@ -9,6 +9,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#8b0000">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✝️</text></svg>">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✝️</text></svg>">
   
   <style>
     /* ============================================
@@ -49,6 +55,7 @@
       color: #333;
       line-height: 1.6;
       overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
     }
 
     h1, h2, h3 {
@@ -77,6 +84,23 @@
 
     .navbar.scrolled {
       box-shadow: 0 4px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    .nav-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      z-index: 999;
+    }
+    .nav-overlay.active {
+      opacity: 1;
+      visibility: visible;
     }
 
     .nav-container {
@@ -142,7 +166,9 @@
       background: none;
       border: none;
       cursor: pointer;
-      padding: 0.5rem;
+      padding: 0.75rem;
+      min-width: 44px;
+      min-height: 44px;
     }
 
     .nav-toggle span {
@@ -202,6 +228,25 @@
       background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
       opacity: 0.3;
       z-index: 1;
+    }
+
+    .page-header::after {
+      content: '';
+      position: absolute;
+      bottom: -10%;
+      left: 50%;
+      width: 90%;
+      max-width: 700px;
+      aspect-ratio: 2 / 1;
+      background: radial-gradient(ellipse at center, rgba(255,215,150,0.15) 0%, rgba(255,200,100,0.06) 35%, transparent 70%);
+      transform: translateX(-50%);
+      pointer-events: none;
+      z-index: 1;
+      animation: dawnPulse 6s ease-in-out infinite;
+    }
+    @keyframes dawnPulse {
+      0%, 100% { opacity: 0.5; transform: translateX(-50%) scale(1); }
+      50% { opacity: 1; transform: translateX(-50%) scale(1.12); }
     }
 
     .page-header .container {
@@ -313,12 +358,8 @@
       align-items: center;
     }
 
-    .content-grid.reverse {
-      direction: rtl;
-    }
-
-    .content-grid.reverse .content-text {
-      direction: ltr;
+    .content-grid.reverse .content-image {
+      order: 1;
     }
 
     /* Image Placeholders */
@@ -348,6 +389,12 @@
 
     @keyframes shimmer {
       100% { left: 100%; }
+    }
+
+    @supports (padding: env(safe-area-inset-top)) {
+      .navbar { padding-top: env(safe-area-inset-top); padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
+      .footer { padding-bottom: calc(2.5rem + env(safe-area-inset-bottom)); }
+      .nav-menu { padding-top: calc(5rem + env(safe-area-inset-top)) !important; padding-bottom: calc(2rem + env(safe-area-inset-bottom)) !important; }
     }
 
     .placeholder-text {
@@ -525,8 +572,8 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 40px;
-      height: 40px;
+      width: 44px;
+      height: 44px;
       background: rgba(255, 255, 255, 0.15);
       color: var(--white);
       text-decoration: none;
@@ -553,6 +600,10 @@
     }
 
     /* ========== RESPONSIVE ========== */
+    @media (max-width: 1024px) {
+      .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
     @media (max-width: 768px) {
       .nav-toggle {
         display: flex;
@@ -644,6 +695,14 @@
         font-size: 1rem;
       }
     }
+
+    @media (max-width: 360px) {
+      .page-header { padding: 3.5rem 0 2rem; }
+      .container { padding: 0 0.75rem; }
+      .logo { font-size: 1.1rem; }
+      .text-slide { font-size: clamp(1.25rem, 4vw, 1.5rem); }
+      .gallery-grid { gap: 0.75rem; }
+    }
   </style>
 </head>
 <body>
@@ -665,6 +724,8 @@
     </div>
   </header>
 
+  <div class="nav-overlay" id="navOverlay"></div>
+
   <!-- PAGE HEADER with Color Changing Background -->
   <section class="page-header" id="dynamicHeader">
     <div class="container">
@@ -682,6 +743,9 @@
   <!-- VERSE TICKER -->
   <div class="verse-ticker">
     <div class="ticker-content">
+      <span class="verse">"For I was hungry and you gave me food..." - Matthew 25:35</span>
+      <span class="verse">"Let all that you do be done in love." - 1 Corinthians 16:14</span>
+      <span class="verse">"Faith by itself, if it is not accompanied by action, is dead." - James 2:17</span>
       <span class="verse">"For I was hungry and you gave me food..." - Matthew 25:35</span>
       <span class="verse">"Let all that you do be done in love." - 1 Corinthians 16:14</span>
       <span class="verse">"Faith by itself, if it is not accompanied by action, is dead." - James 2:17</span>
@@ -841,20 +905,21 @@
       // ========== Mobile Menu Toggle ==========
       const navToggle = document.getElementById('navToggle');
       const navMenu = document.getElementById('navMenu');
+      const navOverlay = document.getElementById('navOverlay');
+
+      function toggleMenu(open) {
+        var isOpen = open !== undefined ? open : !navMenu.classList.contains('active');
+        navMenu.classList.toggle('active', isOpen);
+        navToggle.classList.toggle('active', isOpen);
+        if (navOverlay) navOverlay.classList.toggle('active', isOpen);
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+      }
 
       if (navToggle && navMenu) {
-        navToggle.addEventListener('click', function() {
-          navMenu.classList.toggle('active');
-          navToggle.classList.toggle('active');
-          document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
-        });
-
+        navToggle.addEventListener('click', function() { toggleMenu(); });
+        if (navOverlay) navOverlay.addEventListener('click', function() { toggleMenu(false); });
         navMenu.querySelectorAll('a').forEach(function(link) {
-          link.addEventListener('click', function() {
-            navMenu.classList.remove('active');
-            navToggle.classList.remove('active');
-            document.body.style.overflow = '';
-          });
+          link.addEventListener('click', function() { toggleMenu(false); });
         });
       }
 
