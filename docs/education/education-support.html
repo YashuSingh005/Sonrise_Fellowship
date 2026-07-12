@@ -393,10 +393,8 @@
       100% { left: 100%; }
     }
 
-    @supports (padding: env(safe-area-inset-top)) {
-      .navbar { padding-top: env(safe-area-inset-top); padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
+    @supports (padding: env(safe-area-inset-bottom)) {
       .footer { padding-bottom: calc(2.5rem + env(safe-area-inset-bottom)); }
-      .nav-menu { padding-top: calc(5rem + env(safe-area-inset-top)) !important; padding-bottom: calc(2rem + env(safe-area-inset-bottom)) !important; }
     }
 
     .placeholder-text {
